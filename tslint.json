@@ -1,0 +1,12 @@
+{
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "extends": ["angular-tslint-rules", "tslint-etc"],
+  "rules": {
+    "comment-type": false,
+    "template-i18n": false,
+    "array-type": [true, "array"],
+    "template-use-track-by-function": false,
+    "newline-per-chained-call": false,
+    "no-unused-declaration": true
+  }
+}
