@@ -20,6 +20,19 @@ p {
   padding: 10px 10px 10px 10px;
 }
 
+.new-book {
+  font-weight: bold;
+  color: red;
+}
+
+.left {
+  padding-right: 10px;
+}
+
+.right {
+  padding-left: 10px;
+}
+
 .mat-card {
   background-color: whitesmoke;
 }

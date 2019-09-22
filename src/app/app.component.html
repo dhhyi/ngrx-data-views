@@ -22,7 +22,13 @@
       [ngClass]="{ loading: bookStream.loading$ | async }"
     >
       <mat-card-header>
-        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-title
+          ><span *ngIf="book.isNew()" class="new-book left">NEW</span
+          >{{ book.title
+          }}<span *ngIf="book.isNew()" class="new-book right"
+            >NEW</span
+          ></mat-card-title
+        >
         <mat-card-subtitle>
           <span *ngFor="let author of book.authors; let l = last"
             >{{ author.lastName }}{{ l ? '' : ', ' }}</span

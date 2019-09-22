@@ -7,6 +7,8 @@
     "array-type": [true, "array"],
     "template-use-track-by-function": false,
     "newline-per-chained-call": false,
-    "no-unused-declaration": true
+    "no-unused-declaration": true,
+    "template-no-call-expression": false,
+    "template-cyclomatic-complexity": false
   }
 }
