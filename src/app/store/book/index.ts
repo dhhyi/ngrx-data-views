@@ -4,6 +4,8 @@ import {
   createFeatureSelector,
   createReducer,
   createSelector,
+  createSelectorFactory,
+  defaultMemoize,
   on,
   props
 } from '@ngrx/store';
@@ -39,15 +41,19 @@ export const getBook = createSelector(
   (books, bookId: string): Book => books[bookId]
 );
 
-export const getAuthorsOfBook = createSelector(
-  getBook,
-  getAuthorEntities,
-  (book, authors): Author[] =>
-    book ? book.authorIds.map(authorId => authors[authorId]) : []
-);
+export const checkEqual = (a, b) =>
+  a && b && a.length === b.length && a.every((val, idx) => val === b[idx]);
 
-export const getTagsOfBook = createSelector(
-  getBook,
-  getTagEntities,
-  (book, tags): Tag[] => (book ? book.tagIds.map(tagId => tags[tagId]) : [])
-);
+export const getAuthorsOfBook = () =>
+  createSelectorFactory(projector =>
+    defaultMemoize(projector, undefined, checkEqual)
+  )(getBook, getAuthorEntities, (book, authors): Author[] =>
+    book ? book.authorIds.map(authorId => authors[authorId]) : []
+  );
+
+export const getTagsOfBook = () =>
+  createSelectorFactory(projector =>
+    defaultMemoize(projector, undefined, checkEqual)
+  )(getBook, getTagEntities, (book, tags): Tag[] =>
+    book ? book.tagIds.map(tagId => tags[tagId]) : []
+  );

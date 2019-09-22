@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.books = bookDemoData.map(book => {
       // stream for book selected from store
-      const book$ = this.store.pipe(select(getBookView, book.id));
+      const book$ = this.store.pipe(select(getBookView(), book.id));
 
       return {
         book$,

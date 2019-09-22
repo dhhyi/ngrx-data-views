@@ -11,16 +11,17 @@ export interface BookView {
   published: number;
 }
 
-export const getBookView = createSelector(
-  getBook,
-  getAuthorsOfBook,
-  getTagsOfBook,
-  (book, authors, tags): BookView =>
-    book && {
-      title: book.title,
-      description: book.description,
-      published: book.published,
-      authors,
-      tags
-    }
-);
+export const getBookView = () =>
+  createSelector(
+    getBook,
+    getAuthorsOfBook(),
+    getTagsOfBook(),
+    (book, authors, tags): BookView =>
+      book && {
+        title: book.title,
+        description: book.description,
+        published: book.published,
+        authors,
+        tags
+      }
+  );
