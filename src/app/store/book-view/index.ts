@@ -1,4 +1,5 @@
 import { createSelector } from '@ngrx/store';
+import { once } from 'lodash-es';
 import { Author } from '../author';
 import { getAuthorsOfBook, getBook, getTagsOfBook } from '../book';
 import { Book } from '../book/book.model';
@@ -34,7 +35,7 @@ export const getBookView = () =>
         title: book.title,
         description: book.description,
         published: new Date(book.published),
-        isNew: () => calculateNew(book),
+        isNew: once(() => calculateNew(book)),
         authors,
         tags
       }
